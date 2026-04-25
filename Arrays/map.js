@@ -14,7 +14,7 @@ Array.prototype.myMap = function(cb, thisArg){
 
     //1. check if cb is function type
     if(typeof cb !== 'function')
-        throw new TypeError(cb + "is not a function");
+        throw new TypeError(callback + "is not a function");
 
     //2. Prepare a new result set instead of mutating the given array
     const res = [];
