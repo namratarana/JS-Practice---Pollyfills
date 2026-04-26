@@ -10,20 +10,20 @@ function cb(acc, currEle, i, arr){
 
 
 //Polyfill of Reduce
-Array.prototype.myReduce = function(cb, thisArgs){
+Array.prototype.myReduce = function(cb, initialValue){
     
     //1. Check type of cb
     if(typeof cb !== 'function')
         throw new TypeError(cb + "is not  function");
 
     //2. return a value - Purpose of reduce
-    let res = thisArgs;
+    let res = initialValue;
     
     //3. Iterate
     for(let i=0; i< this.length; i++)
     {
         if(i in this){
-            res = cb.call(thisArgs, res, this[i], i, this)
+            res = cb.call(initialValue, res, this[i], i, this)
         }
     }
     return res;
