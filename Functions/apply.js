@@ -13,7 +13,7 @@ greet.apply(obj, ["Wissen", "Frontend developer"]);
 
 
 //Polyfill of apply
-Function.prototype.myApply = function(thisArgs, ...args){
+Function.prototype.myApply = function(thisArgs, args){
 
     //1. check if the object on which the function has to be invoked is not null or undefined
     thisArgs = thisArgs?? globalThis;
@@ -25,14 +25,14 @@ Function.prototype.myApply = function(thisArgs, ...args){
     //  But it should not override the existing key(if any). 
     //  On a safer side, create a key as a Symbol.
     const fn = Symbol('fn');
-    thisArgs['fn'] = this;
+    thisArgs[fn] = this;
     
     //4. Invoke the method immediately
-    const result= thisArgs.fn(args);
+    const result= thisArgs.fn(...args);
 
     //5. delete the method from the object once it is used.
     delete thisArgs['fn'];
 
-    //return result
+    return result
 }
 greet.apply(obj, ["Wissen", "Frontend Developer"]);

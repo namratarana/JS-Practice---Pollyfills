@@ -23,7 +23,7 @@ Function.prototype.myCall = function(thisArgs, ...args){
     //   but, we need to check if the property already exists then it should not override it. 
     //   on safer side it is better to add a unique property as a Symbol.
     const fn = Symbol('fn');
-    thisArgs.fn = this;
+    thisArgs[fn] = this;
 
     //4. invoke the function immediately
     const result = thisArgs.fn(...args);
